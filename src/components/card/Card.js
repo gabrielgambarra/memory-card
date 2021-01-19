@@ -17,7 +17,7 @@ const Card = (props) => {
         <div className="card" onClick={props.onClick ? canSelectCard : undefined}>
             <div className={`card-flip ${isSelected() || props.obj.stayFlipped ? "is-flipped" : ""}`}>
                 <div className="card__face card__face--front">
-                    <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/wrarcana/wallpaper1_large.jpg" alt="Avatar" />
+                    <img src="https://i.pinimg.com/originals/00/93/9d/00939dff0059e823658afe98bb6d87a4.jpg" alt="Avatar" />
                 </div>
                 <div className="card__face card__face--back">
                     <img src={props.obj.image} alt="Avatar" />

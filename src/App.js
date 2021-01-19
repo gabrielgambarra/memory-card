@@ -12,19 +12,15 @@ const App = () => {
 
   const playGame = () => {
     setPlay(!play);
-    setCards(cardsData);
+    setCards(shuffle(cardsData));
   }
 
   const playAgainGame = () => {
     setCanClickOther(true);
     setSelectedCards([]);
-    let newCards = cardsData.map(data => {return {...data, stayFlipped: false}})
-    setCards(newCards);
-  }
-
-  const print = () => {
-    // setSelectedCards([]);
-    console.log(cards);
+    setCards([]);
+    let newCards = cardsData.map(data => {return {...data, stayFlipped: false}});
+    setCards(shuffle(newCards));
   }
 
   const onSelectCard = (objSelected) => {
@@ -44,8 +40,8 @@ const App = () => {
   const checkIfIsRight = () => {
     if (selectedCards[0].id === selectedCards[1].idMatch || selectedCards[1].id === selectedCards[0].idMatch) {
       let newCards = [...cards];
-      let fisrtSelectedIndex = cards.findIndex(selected => selected.id == selectedCards[0].id)
-      let secondSelectedIndex = cards.findIndex(selected => selected.id == selectedCards[1].id)
+      let fisrtSelectedIndex = cards.findIndex(selected => selected.id === selectedCards[0].id)
+      let secondSelectedIndex = cards.findIndex(selected => selected.id === selectedCards[1].id)
 
       newCards[fisrtSelectedIndex].stayFlipped = true;
       newCards[secondSelectedIndex].stayFlipped = true;
@@ -59,6 +55,10 @@ const App = () => {
         setCanClickOther(true);
       }, 1000);
     }
+  }
+
+  const shuffle = (array) => {
+    return array.sort(() => .5 - Math.random());
   }
 
   useEffect(() => {
@@ -77,8 +77,6 @@ const App = () => {
         ) : (
           <button onClick={playGame}>Play</button>
         )}
-
-        <button onClick={print}>Teste</button>
       </div>
 
       {play === true &&
